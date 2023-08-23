@@ -1,6 +1,6 @@
 ## resume02
 
-Resume01 is a Statamic starter kit. A fully customizable readymade template for a resume website. 
+Resume02 is a Statamic starter kit. A fully customizable readymade template for a resume website. 
 
 ## Introduction 
 
