@@ -1,0 +1,41 @@
+<div class="elisc_tm_topbar">
+    <div class="topbar_inner">
+        <div class="logo" data-type="image">
+            <a class="image" href="javascript:void(0)"><img src="{{profile:logo}}" alt /></a>
+            <a class="text" href="javascript:void(0)"><span>{{profile:name}}</span></a>
+        </div>
+        <div class="trigger">
+            <div class="hamburger hamburger--slider">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="elisc_tm_mobile_menu">
+    <div class="inner">
+        <div class="wrapper">
+            <div class="avatar">
+                <div class="image" data-img-url="{{profile:image}}" style="background-image: url({{profile:image}});"></div>
+            </div>
+            <div class="menu_list">
+                <ul class="anchor_nav">
+                    {{nav:main}}
+                    <li><a class="goto {{ if index == 0 }} current {{/if}}"  class="current"  href="#{{title | slugify}}">{{title}}</a></li>
+                    {{/nav:main}}
+                </ul>
+            </div>
+            <div class="social">
+                <ul>
+                    <li><a href="{{ social:facebook:share }}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href="{{ social:twitter:share }}" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="{{ social:linkedin:share }}" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>{{footer:footer_heading}} {{now |format:Y}}</p>
+            </div>
+        </div>
+    </div>
+</div>

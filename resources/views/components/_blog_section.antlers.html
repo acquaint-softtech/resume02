@@ -1,0 +1,155 @@
+<div class="elisc_tm_section" id="{{blog_slug | slugify}}">
+    <div class="elisc_tm_news fn_w_sminiboxes">
+        <div class="tm_content">
+            <div class="wrapper">
+                <div class="left fn_w_sminibox">
+                    <div class="elisc_tm_sticky_section">
+                        <div class="elisc_tm_title">
+                            <span>- {{blog_heading}}</span>
+                            <h3>{{blog_title}}</h3>
+                        </div>
+                        <div class="elisc_tm_button">
+                            <a class="anchor" href="{{blog_button_link}}">{{blog_button_text}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="right fn_w_sminibox">
+                    <div class="elisc_tm_sticky_section">
+                        <div class="list" >
+                            <ul id="collection-content">
+                                {{collection:blog as="posts" limit="4" max_depth="1" sort="date:desc"}}
+                                {{posts}}
+                                <li>
+                                    <img class="popup_image" src="{{blog_image}}" alt />
+                                    <div class="list_inner" >
+                                        <div class="info">
+                                            <div class="meta">
+                                                <img class="svg" src="/assets/blog.svg" alt />
+                                                <span>{{ date iso_format="MMMM DD, YYYY" }}</span>
+                                            </div>
+                                            <div class="title">
+                                                <h3><a href="javascript:void(0)">{{title}}</a></h3>
+                                            </div>
+                                        </div>
+                                        <div class="elisc_tm_read_more">
+                                            <a class="line_effect" href="javascript:void(0)">Learn More<span><img
+                                                        class="svg" src="/assets/chl.svg"
+                                                        alt /></span></a>
+                                        </div>
+                                        <div class="news_hidden_details">
+                                            <div class="news_popup_informations">
+                                                <div class="text">
+                                                    <p>{{blog_content}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {{/posts}}
+                                {{/collection:blog}}
+                            </ul>
+                        </div>
+                        {{ showLoadMore = 0 }}
+                        {{ collection:blog as="entries" }}  
+                            {{ if entries | count > 4 }}
+                                {{ showLoadMore = 1 }}
+                            {{ /if }}
+                        {{ /collection:blog }}
+                        {{ if showLoadMore == 1}}
+                            <div class="elisc_tm_button" id="load-more-div">
+                                <button id="load-more" class="color" style="margin-top: 36px;">Load more</button>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ pushOnce:scripts }}
+<script>
+    var getRecords = 4;
+    var offset = 0;
+    $('#load-more').click(function() {
+      $.ajax({
+        url: '/collection/blog/' + getRecords,
+
+        success: function(data) {
+            if(data['countData'] == 0 ) {
+                $('#load-more-div').hide();
+            }
+          $('#collection-content').append(data['htmlContent']);
+          getRecords = getRecords + 4;
+          elisc_tm_movingbox();
+          elisc_tm_modalbox_news();
+        }
+      });
+    });
+    function elisc_tm_movingbox() {
+        "use strict";
+        var news = jQuery('.elisc_tm_news');
+        if (news.length) {
+            if (!$('.movingbox').length) {
+                $('body').append('<div class="movingbox"></div>');
+            }
+        }
+        var movingbox = jQuery('.movingbox');
+        var movingboxH = jQuery('.movingbox').height() / 2;
+        var list = jQuery('.elisc_tm_news .list ul li');
+        list.on('mouseenter', function() {
+            var element = jQuery(this);
+            var image = element.find('.popup_image').attr('src');
+            movingbox.addClass('opened');
+            movingbox.css({
+                backgroundImage: 'url(' + image + ')'
+            });
+        }).on('mouseleave', function() {
+            movingbox.removeClass('opened');
+        }).on('mousemove', function(event) {
+            var ymove = event.clientY - movingboxH;
+            var xmove = event.clientX + 20;
+            movingbox.css({
+                top: ymove + 'px',
+                left: xmove + 'px'
+            });
+        });
+    }
+    function elisc_tm_modalbox_news() {
+        "use strict";
+        var modalBox = jQuery('.elisc_tm_modalbox');
+        var button = jQuery('.elisc_tm_news .list .title a,.elisc_tm_news .elisc_tm_read_more a');
+        var closePopup = modalBox.find('.close');
+        button.on('click', function() {
+            var element = jQuery(this);
+            var parent = element.closest('li');
+            var content = parent.find('.news_hidden_details').html();
+            var image = parent.find('.popup_image').attr('src');
+            var meta = parent.find('.meta').html();
+            var title = parent.find('.title h3 a').text();
+            modalBox.addClass('opened');
+            modalBox.find('.description_wrap').html(content);
+            modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="/assets/4.jpg" alt="" /><div class="main" data-img-url="' + image + '"></div></div>');
+            modalBox.find('.news_popup_informations .image').after('<div class="details"><div class="meta">' + meta + '</div><div class="title"><h3>' + title + '</h3></div></div>');
+            elisc_tm_data_images();
+            return false;
+        });
+        closePopup.on('click', function() {
+            modalBox.removeClass('opened');
+            modalBox.find('.description_wrap').html('');
+            return false;
+        });
+    }
+    function elisc_tm_data_images() {
+        "use strict";
+        var data = jQuery('*[data-img-url]');
+        data.each(function() {
+            var element = jQuery(this);
+            var url = element.data('img-url');
+            element.css({
+                backgroundImage: 'url(' + url + ')'
+            });
+        });
+    }
+  </script>
+  {{ endPushOnce }}

@@ -1,0 +1,63 @@
+title: Components
+fields:
+  -
+    handle: components
+    field:
+      collapse: false
+      previews: true
+      fullscreen: true
+      sets:
+        new_set_group:
+          display: 'New Set Group'
+          instructions: null
+          icon: null
+          sets:
+            home_section:
+              display: 'Home section'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  import: home_section
+            about_section:
+              display: 'About Section'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  import: about_section
+            services_section:
+              display: 'Services Section'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  import: services_section
+            work_section:
+              display: 'Work Section'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  import: work_section
+            blog_section:
+              display: 'Blog Section'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  import: blog_section
+            contact_section:
+              display: 'Contact Section'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  import: contact_section
+      type: replicator
+      display: Components
+      icon: replicator
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false

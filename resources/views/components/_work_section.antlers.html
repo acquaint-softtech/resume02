@@ -1,0 +1,214 @@
+<div class="elisc_tm_section" id="{{port_slug | slugify}}">
+    <div class="elisc_tm_portfolio">
+        <div class="tm_content">
+            <div class="elisc_tm_portfolio_title">
+                <div class="imagecarousel">
+                    <span>- {{work_heading}}</span>
+                    <h3>{{work_title}}</h3>
+                </div>
+                <div class="buttons">
+                    <a class="prev_button" href="javascript:void(0)"><img class="svg" src="/assets/prev.svg" alt /></a>
+                    <a class="next_button" href="javascript:void(0)"><img class="svg" src="/assets/next.svg" alt /></a>
+                </div>
+            </div>
+            <div class="portfolio_list">
+                <ul class="owl-one owl-carousel gallery_zoom" id="collection-content2">
+                    {{collection:work_collection as="posts" sort="date:desc"}}
+                    {{posts}}
+                    <li data-bs-toggle="modal" data-bs-target="#exampleModal-{{index}}" class="">
+                        <div class="list_inner">
+                            <div class="image">
+                                <img src="{{work_image}}" alt />
+                                <div class="main" data-img-url="{{work_image}}"
+                                    style="background-image:url({{work_image}})"></div>
+                                {{# <a class="elisc_tm_full_link popup-youtube glightbox" href="{{work_video}}"></a> #}}
+                            </div>
+                            <div class="details">
+                                <span class="category"><a href="javascript:void(0)">{{heading}}</a></span>
+                                <h3 class="title">
+                                    {{title}}
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+                    {{/posts}}
+                    {{/collection:work_collection}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{# <div class="elisc_tm_partners">
+        <div class="tm_content">
+            <div class="elisc_tm_title">
+                <span>- {{client_heading}}</span>
+                <h3>{{client_title}}</h3>
+            </div>
+            <div class="partners_inner">
+                <ul>
+                    {{logo_cloud}}
+                    <li>
+                        <div class="list_inner">
+                            <img src="{{url}}" alt />
+                            <a class="elisc_tm_full_link" a href="javascript:void(0)"></a>
+                        </div>
+                    </li>
+                    {{/logo_cloud}}
+                </ul>
+            </div>
+        </div>
+    </div> #}}
+    {{# <div class="elisc_tm_testimonial_wrapper">
+        <div class="tm_content">
+            <div class="elisc_tm_testimonials">
+                <div class="imagecarousel" data-position="center">
+                    <span>- {{testimonial_heading}}</span>
+                    <h3>{{testimonial_title}}</h3>
+                </div>
+                <div class="testimonials_list">
+                    <ul class="owl-two owl-carousel owl-theme">
+                        {{testimonial_grid}}
+                        <li>
+                            <div class="text">
+                                <p>{{detials}}</p>
+                            </div>
+                            <div class="short">
+                                <div class="image">
+                                    <div class="main" data-img-url="{{image}}" style="background-image:url({{image}})">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <h3>{{name}}</h3>
+                                </div>
+                            </div>
+                            <p class="job">{{position}}</p>
+                        </li>
+                        {{/testimonial_grid}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> #}}
+</div>
+{{# // model  #}}
+{{collection:work_collection as="posts" sort="date:desc"}}
+{{posts}}
+<div class="modal work-model" id="exampleModal-{{index}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content description_wrap">
+            <button type="button" class="work-model-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>                        
+            {{# <div data-bs-dismiss="modal" aria-label="Close" class="close">
+                <a href="#"><i class="fa-solid fa-xmark" style="margin-left: 680px;"></i>
+                </a>
+            </div> #}}
+            <div class="modal-body">
+                <img class="" src="{{work_image}}">
+                <h3 class="modal-title fs-5" id="exampleModalLabel" style="margin-top: 20px; font-size: 25px !important;">{{title}}</h3>
+                <div class="works">
+                    <div class="work-descriptions">
+                        <p>{{work_content}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/posts}}
+{{/collection:work_collection}}
+<style>
+    .modal-backdrop {
+    background-color: transparent;
+    pointer-events: none;
+ }
+ .portfolio_list ul li{cursor: pointer;}
+.modal.show{background-color: rgb(0 0 0 / 80%);height: 100vh;}
+.work-model .modal-dialog{max-width: 968px;position: absolute;width: 100%;left: 50%;top: 20px;bottom: 30px;}
+.work-model .modal-content{overflow-y: scroll;height: 100%;}
+.work-model .modal-body{padding: 50px;}
+.work-model.modal.show .modal-dialog{transform: translateX(-50%) !important;}
+.work-model .modal-body img{width: 100%; height:428px;object-fit: cover;border-radius: 5px;}
+.work-model .modal-body .modal-title{font-size: 25px;margin-top: 20px;margin-bottom: 20px;}
+.work-model .description_wrap::-webkit-scrollbar-thumb {background-color: #bbb;border-radius: 10px;border: 3px solid #fff;}
+.work-model .description_wrap::-webkit-scrollbar {width: 11px;background-color: #fff;border-radius: 0 5px 5px 0;}
+.work-model-close{position: fixed;left: 100%;margin-left: 60px;color: #fff;border: 2px solid #fff;border-radius: 6px;width: 40px;background-color: transparent;transition: all .3s ease;}
+.work-model-close:hover{border-radius: 50%;}
+
+.work-descriptions p {
+    margin-bottom: 10px;
+    opacity: .8;
+    clear: both;
+  }
+
+@media(max-width: 384px){
+    .work-model .modal-dialog{max-width: 280px;}
+    .work-model-close{margin-left: auto;right: 30px;color: #000;border-color: transparent;}
+}
+@media(min-width: 385px) and (max-width:768px){
+    .work-model .modal-body{padding: 30px 25px 25px;}
+    .work-model .modal-dialog{max-width: 300px;}
+    .work-model-close{margin-left: auto;right: 30px;color: #000;border-color: transparent;}
+    .work-model .modal-body .modal-title{font-size: 19px;}
+}
+@media(min-width: 769px) and (max-width:1280px){
+    .work-model .modal-dialog{max-width: 600px;}
+    .work-model-close{margin-left: 10px;}
+}
+</style>
+
+
+{{ once }}
+{{ push:scripts }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{{ /push:scripts }}
+{{ /once }}
+{{ pushOnce:scripts }}
+<script>
+    const lightbox = GLightbox({
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true
+    });
+    $(function () {
+        // Owl Carousel
+        var owl = $(".owl-one");
+        owl.owlCarousel({
+            loop: true,
+            items: 3,
+            lazyLoad: false,
+            margin: 20,
+            autoplay: true,
+            autoplayTimeout: 7000,
+            rtl: false,
+            dots: true,
+            nav: false,
+            navSpeed: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1040: {
+                    items: 3
+                }
+            }
+        });
+    });
+    $(function () {
+        // Owl Carousel
+        var owl1 = $(".owl-two");
+        owl1.owlCarousel({
+            loop: true,
+            items: 1,
+            lazyLoad: false,
+            margin: 0,
+            autoplay: true,
+            autoplayTimeout: 7000,
+            rtl: false,
+            dots: true,
+            nav: false,
+            navSpeed: false
+        });
+    });   
+</script>
+{{ endPushOnce }}

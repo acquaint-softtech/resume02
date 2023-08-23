@@ -1,0 +1,9 @@
+{
+    "name": "acquaint-softtech/resume02",
+    "extra": {
+        "statamic": {
+            "name": "Resume02",
+            "description": "Resume02 starter kit"
+        }
+    }
+}

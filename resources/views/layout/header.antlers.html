@@ -1,0 +1,50 @@
+<div class="menu scrollable" style="height: 514px;">
+    <ul class="anchor_nav">
+        {{nav:main}}
+        <li><a {{if index==0}} class="current" {{/if}} href="#{{title | slugify}}">{{title}}</a></li>
+        {{/nav:main}}
+    </ul>
+</div>
+{{ pushOnce:scripts }}
+<script>
+    $(document).ready(function () {
+        $(document).on("scroll", onScroll);
+        //smoothscroll
+        $('a[href^="#"]').on('click', function (e) {
+            e.preventDefault();
+            $(document).off("scroll");
+            $('a').each(function () {
+                $(this).removeClass('current');
+            })
+            $(this).addClass('current');
+            var target = this.hash,
+                menu = target;
+            $target = $(target);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top + 2
+            }, 100, 'swing', function () {
+                $(document).on("scroll", onScroll);
+                if (window.history.pushState) {
+                    window.history.pushState('', '/', window.location.pathname)
+                } else {
+                    window.location.hash = '';
+                }
+            });
+        });
+    });
+    function onScroll(event) {
+        var scrollPos = $(document).scrollTop();
+        $('.menu a').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("href"));
+            if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                $('.menu ul li a').removeClass("current");
+                currLink.addClass("current");
+            }
+            else {
+                currLink.removeClass("current");
+            }
+        });
+    }
+</script>
+{{ endPushOnce }}

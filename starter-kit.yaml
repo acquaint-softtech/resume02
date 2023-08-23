@@ -1,0 +1,10 @@
+export_paths:
+  - content
+  - config/filesystems.php
+  - config/statamic/assets.php
+  - resources/blueprints
+  - resources
+  - public/assets
+  - package.json
+  - tailwind.config.js
+  - vite.config.js

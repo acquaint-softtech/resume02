@@ -1,0 +1,126 @@
+<div class="elisc_tm_section" id="{{ser_slug | slugify}}">
+    <div class="elisc_tm_services">
+        <div class="tm_content">
+            <div class="elisc_tm_service_title">
+                <div class="elisc_tm_title">
+                    <span>- {{heading}}</span>
+                    <h3>{{ser_title}}</h3>
+                </div>
+                <a href="mailto:{{mail}}"><span
+                        class="__cf_email__"
+                        data-cfemail="bac9cfcacad5c8cefadfd6d3c9d994d9d5d7">{{mail}}</span></a>
+            </div>
+            <div class="service_list">
+                <ul id="collection-content1">
+                    {{a = 1}}
+                    {{collection:services_collection as="posts" limit="3" max_depth="1" sort="date:desc"}}
+                    {{posts}}
+                    <li>
+                        <img class="popup_image" src="{{ser_image}}" alt />
+                        <div class="list_inner">
+                            <div class="details">
+                                <div class="title">
+                                    <span>{{a}}</span>
+                                    <h3>{{title}}</h3>
+                                </div>
+                                <div class="text">
+                                    <p>{{ser_short_description}}
+                                    </p>
+                                </div>
+                                <div class="elisc_tm_read_more">
+                                    <a href="javascript:void(0)">Read More<span><img class="svg"
+                                                src="/assets/chl.svg" alt /></span></a>
+                                </div>
+                            </div>
+                            <a class="elisc_tm_full_link" href="javascript:void(0)"></a>
+                            <div class="hidden_details">
+                                <div class="descriptions">
+                                    <p>{{ser_content}}</p>
+                                </div>
+                            </div>
+                            {{a = a+1 }}
+                        </div>
+                    </li>
+                    {{/posts}}
+                    {{/collection:services_collection}}
+                </ul>
+            {{ showLoadMore = 0 }}
+            {{ collection:services_collection as="entries" }}  
+            {{ if entries | count > 3 }}
+            {{ showLoadMore = 1 }}
+            {{ /if }}
+            {{ /collection:services_collection }}
+            {{ if showLoadMore == 1}}
+            <div class="elisc_tm_button" id="load-more-div1">
+                <button id="load-more1" class="color">Load more</button>
+            </div>
+            {{/if}}
+            </div>
+            <div class="elisc_tm_video">
+                <img class="placeholder" src="{{video_image}}" alt />
+                <div class="image" data-img-url="{{video_image}}" style="background-image: url({{video_image}});"></div>
+                <div class="overlay"></div>
+                <span class="play"><img class="svg" src="/assets/play.svg" alt /></span>
+                <div class="text">
+                    <h3>{{video_title}}</h3>
+                </div>
+                <a class="elisc_tm_full_link popup-youtube glightbox"
+                    href="{{video_url}}"></a>
+            </div>
+        </div>
+    </div>
+</div>
+{{ pushOnce:scripts }}
+<script>
+    var getRecords1 = 3;
+    var offset = 0;
+    $('#load-more1').click(function() {
+      $.ajax({
+        url: '/collection/services_collection/' + getRecords1,
+        success: function(data) {
+            if(data['countData'] == 0 ) {
+                $('#load-more-div1').hide();
+            }
+          $('#collection-content1').append(data['htmlContent']);
+          getRecords1 = getRecords1 + 3;
+          elisc_tm_service_popup();
+        }
+      });
+    });
+    function elisc_tm_service_popup() {
+        "use strict";
+        var modalBox = jQuery('.elisc_tm_modalbox');
+        var button = jQuery('.elisc_tm_services .service_list .elisc_tm_full_link');
+        var closePopup = modalBox.find('.close');
+        button.on('click', function() {
+            var element = jQuery(this);
+            var parent = element.closest('.elisc_tm_services .service_list ul li');
+            var elImage = parent.find('.popup_image').attr('src');
+            var title = parent.find('.title h3').text();
+            var content = parent.find('.hidden_details').html();
+            modalBox.addClass('opened');
+            modalBox.find('.description_wrap').html(content);
+            modalBox.find('.descriptions').prepend('<div class="top_image"><img src="/assets/3.jpg" alt="" /><div class="main" data-img-url="' + elImage + '"></div></div>');
+            elisc_tm_data_images();
+            modalBox.find('.descriptions .top_image').after('<div class="main_title"><h3>' + title + '</h3></div>');
+            return false;
+        });
+        closePopup.on('click', function() {
+            modalBox.removeClass('opened');
+            modalBox.find('.description_wrap').html('');
+            return false;
+        });
+    }
+    function elisc_tm_data_images() {
+        "use strict";
+        var data = jQuery('*[data-img-url]');
+        data.each(function() {
+            var element = jQuery(this);
+            var url = element.data('img-url');
+            element.css({
+                backgroundImage: 'url(' + url + ')'
+            });
+        });
+    }
+  </script>
+  {{ endPushOnce }}

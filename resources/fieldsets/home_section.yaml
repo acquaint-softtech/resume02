@@ -1,0 +1,191 @@
+title: 'Home section'
+fields:
+  -
+    handle: home_slug
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Slug
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: text_1
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Heading
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: text_2
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Subtitle
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: text_3
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Subtitle 1'
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: text_4
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Subtitle 2'
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: text_5
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Subtitle 3'
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: details
+    field:
+      automatic_line_breaks: true
+      automatic_links: false
+      escape_markup: false
+      smartypants: false
+      restrict: false
+      antlers: false
+      type: markdown
+      display: Details
+      icon: markdown
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: image
+    field:
+      max_files: 1
+      mode: list
+      container: assets
+      restrict: false
+      allow_uploads: true
+      show_filename: true
+      show_set_alt: true
+      type: assets
+      display: Image
+      icon: assets
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: button_text
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Button Text'
+      icon: text
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: button_link
+    field:
+      type: link
+      display: 'Button Link'
+      icon: link
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: button_text_1
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Button Text 1'
+      icon: text
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: button_link_1
+    field:
+      type: link
+      display: 'Button Link 1'
+      icon: link
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: contact
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Contact
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: email
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Email
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: location
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Location
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false

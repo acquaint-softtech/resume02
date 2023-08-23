@@ -1,0 +1,108 @@
+title: 'Contact Section'
+fields:
+  -
+    handle: con_slug
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Slug
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: con_heading
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Heading
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: con_title
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Title
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: con_description
+    field:
+      antlers: false
+      type: textarea
+      display: Description
+      icon: textarea
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: con_contact
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Contact
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: con_mail
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Mail
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: con_location
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: Location
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: form_field
+    field:
+      max_items: 1
+      type: form
+      display: 'Form Field'
+      icon: form
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: google_map_url
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Google Map Url'
+      icon: text
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false

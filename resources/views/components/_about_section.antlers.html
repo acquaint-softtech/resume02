@@ -1,0 +1,104 @@
+<style>
+    p strong{
+        color:#FF972D;
+    }
+</style>
+<div class="elisc_tm_section" id="{{about_slug | slugify}}">
+    <div class="elisc_tm_about">
+        <div class="tm_content">
+            <div class="elisc_tm_biography">
+                <div class="left">
+                    <div class="title">
+                        <span class="mini">{{heading}}</span>
+                        <h3 class="name">{{profile:name}}</h3>
+                        <span class="job">
+                            <span class="cd-headline rotate-1">
+                                <span class="blc">{{title}}</span>
+                                <span class="cd-words-wrapper">
+                                    <b class="is-visible">{{subtitle}}</b>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="elisc_tm_button">
+                        <a class="anchor" href="{{about_button_link}}">{{about_button_text}}</a>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="text">
+                            <p>{{about_details}}</p>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            {{details_grid}}
+                            <li>
+                                <span>{{label_text}}</span>
+                                {{ if index == 1 }}
+                                    <span><a class="href_location" href="javascript:void(0)">{{answer_text}}</a></span>
+                                {{ elseif index == 2 }}
+                                    <span><a href="mailto:{{answer_text}}">{{answer_text}}</a></span>
+                                {{ elseif index == 3 }}
+                                    <span><a href="tel:{{answer_text}}">{{answer_text}}</a></span>
+                                {{else}}
+                                    <span>{{answer_text}}</span>
+                                {{/if}}
+                            </li>
+                            {{/details_grid}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="elisc_tm_counter">
+                <ul>
+                    {{numbers_grid}}
+                    <li>
+                        <div class="list_inner">
+                            <h3>{{number}}</h3>
+                            <span>{{content}}</span>
+                        </div>
+                    </li>
+                    {{/numbers_grid}}
+                </ul>
+            </div>
+        </div>
+        <div class="elisc_tm_experience">
+            <div class="tm_content">
+                <div class="elisc_tm_title">
+                    <span>- {{exp_heading_1}}</span>
+                    <h3>{{exp_title_1}}</h3>
+                </div>
+                <div class="list">
+                    <ul>
+                        {{collection:experience as="posts" sort="date:desc"}}
+                        {{posts}}
+                        <li>
+                            <img class="popup_image" src="{{exp_image}}" alt />
+                            <div class="list_inner">
+                                <div class="short">
+                                    <div class="job">
+                                        <span class="yellowColor">-{{present_year}}</span>
+                                        <h3>{{title}}</h3>
+                                    </div>
+                                    <div class="place">
+                                        <span>-{{name}}</span>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <p>{{short_description}}</p>
+                                </div>
+                                <a class="elisc_tm_full_link" href="javascript:void(0)"></a>
+                                <div class="hidden_details">
+                                    <div class="descriptions">
+                                        <p>{{content}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {{/posts}}
+                        {{/collection:experience}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

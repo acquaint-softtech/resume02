@@ -1,0 +1,89 @@
+<script src="/vendor/statamic/frontend/js/helpers.js"></script>
+<div x-data="sending" x-cloak>
+    {{ form:create in="contact"
+        id="form-contact"
+        csrf="true"
+        class="mt-[30px] mx-auto max-w-[550px] mb-[45px]"
+        x-ref="form"
+        @submit.prevent="sendForm()"
+        js="alpine:dynamic_form"
+    }}
+        
+            {{ fields }}
+                <template x-if="{{ show_field }}">
+                    <div class="{{ input_type == 'hidden' ?= 'hidden' }} flex flex-col mt-3 relative
+                        {{ width == '25' ?= 'md:col-span-3' }}
+                        {{ width == '33' ?= 'md:col-span-4' }}
+                        {{ width == '50' ?= 'md:col-span-6' }}
+                        {{ width == '66' ?= 'md:col-span-8' }}
+                        {{ width == '75' ?= 'md:col-span-9' }}
+                        {{ width == '100' ?= 'md:col-span-12' }}"
+                    >        
+
+                        {{ field }}      
+                        
+                    </div>
+                </template>
+                    <template x-if="errors.{{ handle }}">
+                        <p style="color:#e53e3e; margin-top:10px;"  id="{{ handle }}" x-text="errors.{{ handle}}"></p>
+                    </template>
+            {{ /fields }}
+
+            <template x-if="success" class="">
+                <p style="color:#16a34a; margin-bottom:10px;" >Your message has been received, We will contact you soon.</p>
+            </template>
+            
+            <div class="elisc_tm_button" style="margin-top: 10px ;">
+                <input type="submit" class="color" id="send_message" value="Submit now" />
+            </div>
+     
+            
+    {{ /form:create }}
+</div>
+
+<script>
+    document.addEventListener('alpine:initializing', () => {
+        Alpine.data('sending', () => {
+            return {
+                error: false,
+                errors: [],
+                sending: false,
+                success: false,
+                sendForm: async function() {
+                    this.sending = true
+                    fetch(this.$refs.form.action, {
+                        headers: {
+                            'X-Requested-With' : 'XMLHttpRequest',
+                        },
+                        method: 'POST',
+                        body: new FormData(this.$refs.form)})
+                    .then(res => res.json())
+                    .then(json => {
+                        if (json['success']) {
+                            this.errors = []
+                            this.success = true
+                            this.error = false
+                            this.sending = false
+                            this.$refs.form.reset()
+
+                            setTimeout(function(){
+                                this.success = false
+                            }, 4500)
+                        }
+                        if (json['error']) {
+                            this.sending = false
+                            this.error = true
+                            this.success = false
+                            this.errors = json['error']
+                        }
+                    })
+                    .catch(err => {
+                        err.text().then( errorMessage => {
+                            this.sending = false
+                        })
+                    })
+                }
+            }
+        })
+    })
+</script>
