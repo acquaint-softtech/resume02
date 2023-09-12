@@ -41,13 +41,13 @@ Resume02 is a Statamic starter kit shows different types of details according to
 You can create a new site using the [Statamic CLI Tool](https://github.com/statamic/cli):
 
 ```
-statamic new your-site acquaint-softtech/resume01
+statamic new your-site acquaint-softtech/resume02
 ```
 
 Or you can install manually into a fresh [Statamic installation](https://statamic.dev/installation) by running:
 
 ```
-php please starter-kit:install acquaint-softtech/resume01 --clear-site
+php please starter-kit:install acquaint-softtech/resume02 --clear-site
 ```
 
 ### 2. Make a new user
@@ -72,7 +72,7 @@ Read the docs on the [Documentation](DOCUMENTATION.md)
 
 ## Bugs 🐛 Issues 🚧 Feature Request 💡
 
-If you find a bug, are stuck, or need help, do not hesitate to contact Acquaint Softtech for [support](https://github.com/acquaint-softtech/resume01/issues).  In the case where you have additional development requirements or need to add a new feature, you can [hire Statamic developers](https://acquaintsoft.com/statamic-cms-development-company).
+If you find a bug, are stuck, or need help, do not hesitate to contact Acquaint Softtech for [support](https://github.com/acquaint-softtech/resume02/issues).  In the case where you have additional development requirements or need to add a new feature, you can [hire Statamic developers](https://acquaintsoft.com/statamic-cms-development-company).
 
 ## Credits
 
